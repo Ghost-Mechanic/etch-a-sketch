@@ -21,12 +21,62 @@ body {
     padding: 40px;
 }
 
+.button-container {
+    display: flex;
+    gap: 400px;
+}
+
 button {
     font-size: 20px;
     background-color: black;
     border: solid black;
     border-radius: 8px;
     color: white;
+}
+
+.color-buttons {
+    display: flex;
+}
+
+#rainbow-button {
+    display: inline-flex;
+    border-right-color: white;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+#r {
+    color: red;
+}
+
+#a {
+    color: orange;
+}
+
+#i {
+    color: yellow;
+}
+
+#n {
+    color: green;
+}
+
+#b {
+    color: blue;
+}
+
+#o {
+    color: indigo;
+}
+
+#w {
+    color: violet;
+}
+
+#black-button {
+    border-left-color: white;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 .grid-container {

@@ -3,6 +3,7 @@ This program creates an Etch-a-Sketch in a website where the user can fill boxes
 their mouse by hovering over it, allowing them to draw on a grid.
 *************************************************************************************/
 
+// This function creates a new grid with a user-inputted number of boxes on each side
 function newGrid() {
     const gridContainer = document.querySelector(".grid-container");
 
@@ -41,6 +42,20 @@ function newGrid() {
     }
 }
 
+// this function generates a random color for the rainbow button
+function randomColor() {
+    let hexValues = "0123456789ABCDEF";
+    let hexColor = "#";
+
+    // build hex color using for loop to get 6 random hex characters
+    for (let i = 0; i < 6; ++i) {
+        let index = Math.floor(Math.random() * 16);
+        hexColor += hexValues[index]; 
+    }
+
+    return hexColor;
+}
+
 function main() {
     const gridContainer = document.querySelector(".grid-container");
 
@@ -55,7 +70,7 @@ function main() {
             gridContainer.appendChild(newBlock);
 
             // add event listener to each block that changes its color to black
-            // when mouse hovers over it
+            // when mouse hovers over it by default
             newBlock.addEventListener("mouseover", () => {
                 newBlock.style.backgroundColor = "black";
             });
@@ -67,6 +82,40 @@ function main() {
     // add button to change grid box size
     btn.addEventListener("click", () => {
         newGrid();
+    });
+
+    // initialize references to two buttons to change the color of the box filling
+    const rainbowBtn = document.querySelector("#rainbow-button");
+    const blackBtn = document.querySelector("#black-button");
+
+    // boxes are filled with random color when clicking the rainbow option
+    rainbowBtn.addEventListener("click", () => {
+        const currBoxes = document.querySelectorAll(".block");
+
+        // add new event listener to all blocks to make them filled with a random color
+        currBoxes.forEach((box) => {
+            box.removeEventListener("mouseover", () => {
+                box.style.backgroundColor = "black";
+            });
+            box.addEventListener("mouseover", () => {
+                box.style.backgroundColor = randomColor();
+            });
+        });
+    });
+
+    // boxes are filled with black when clicking the black option, or by default
+    blackBtn.addEventListener("click", () => {
+        const currBoxes = document.querySelectorAll(".block");
+
+        // add event listener to all boxes to make them filled with black
+        currBoxes.forEach((box) => {
+            box.removeEventListener("mouseover", () => {
+                box.style.backgroundColor = randomColor();
+            });
+            box.addEventListener("mouseover", () => {
+                box.style.backgroundColor = "black";
+            });
+        });
     });
 }
 
