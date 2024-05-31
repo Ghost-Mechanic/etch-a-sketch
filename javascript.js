@@ -9,12 +9,11 @@ function newGrid() {
     let numBoxes = prompt("Select the number of boxes you want on each side of the grid (Enter a number 1-100)");
     numBoxes = Number(numBoxes);
 
-    // while (numBoxes == NaN || numBoxes < 1 || numBoxes > 100) {
-    //     console.log(String(numBoxes));
-    //     numBoxes = prompt("Please enter a number 1-100)");
-    //     numBoxes = Number(numBoxes);
-    //     console.log(numBoxes);
-    // }
+    // make sure user input is valid before continuing
+    while (isNaN(numBoxes) || numBoxes < 1 || numBoxes > 100) {
+        numBoxes = prompt("Please enter a number 1-100");
+        numBoxes = Number(numBoxes);
+    }
 
     // use forEach method to delete current grid
     const currBoxes = document.querySelectorAll(".block");
@@ -65,42 +64,8 @@ function main() {
 
     const btn = document.querySelector("#box-button");
 
+    // add button to change grid box size
     btn.addEventListener("click", () => {
-        // let numBoxes = prompt("Select the number of boxes you want on the grid (Enter a number 1-100)");
-        // numBoxes = Number(numBoxes);
-
-        // // while (numBoxes == NaN || numBoxes < 1 || numBoxes > 100) {
-        // //     console.log(String(numBoxes));
-        // //     numBoxes = prompt("Please enter a number 1-100)");
-        // //     numBoxes = Number(numBoxes);
-        // //     console.log(numBoxes);
-        // // }
-
-        // // use forEach method to delete current grid
-        // const currBoxes = document.querySelectorAll(".block");
-        // currBoxes.forEach((box) => {
-        //     box.remove();
-        // })
-
-        // let newBlockWidth = GRID_LENGTH / numBoxes;
-
-        // // use nested for loops to create new grid with new number of boxes
-        // for (let r = 0; r < numBoxes; ++r) {
-        //     for (let c = 0; c < numBoxes; ++c) {
-        //         let newBlock = document.createElement("div");
-        //         newBlock.classList.add("block");
-
-        //         // set new width and height based on calculation
-        //         newBlock.style.width = newBlockWidth + "px";
-        //         newBlock.style.height = newBlockWidth + "px";
-        //         gridContainer.appendChild(newBlock);
-
-        //         newBlock.addEventListener("mouseover", () => {
-        //             newBlock.style.backgroundColor = "black";
-        //         });
-        //     }
-        // }
-
         newGrid();
     });
 }
